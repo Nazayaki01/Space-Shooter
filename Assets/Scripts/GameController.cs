@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+    public GameObject myplayer;
     public GameObject hazard;
     public Vector3 spawnValues;
     public int hazardCount;
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour {
     private int score;
     void Start()
     {
+        myplayer.SetActive(true);
         gameover = false;
         restart = false;
         restartText.text = "";
@@ -51,7 +53,7 @@ public class GameController : MonoBehaviour {
         while (true) {
             for (int i = 0; i < hazardCount; i++)
             {
-                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), Random.Range(-10,10), spawnValues.z);
                 Quaternion spawnRotation = new Quaternion();
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
